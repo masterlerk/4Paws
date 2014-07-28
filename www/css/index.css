@@ -1,0 +1,384 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+@font-face {
+	font-family:Quicksand;
+	src: url('quicksand.otf');
+}
+ 
+ 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#aaa;
+    font-family:Quicksand, 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:16px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+
+/* Main Styles */
+.page {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.page-header {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:44px;
+    background-color:#EF0A62;
+}
+
+.page-body {
+    top:44px;
+    bottom:50px;
+    left:0;
+    right:0;
+    position:absolute;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background-color:#fff;
+    background-position:right bottom;
+    background-size:300px auto;
+    background-repeat:no-repeat;
+    padding-top:20px;
+}
+
+.page-footer {
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:59px;
+    border-top:1px solid #ccc;
+    background-color:#fff;
+}
+
+.page-footer-nav {
+    width:25%;
+    height:59px;
+    float:left;
+    display:block;
+    position:relative;
+}
+
+.page-footer-nav-icon {
+    width:44px;
+    height:22px;
+    position:absolute;
+    top:10px;
+    left:50%;
+    margin-left:-22px;
+}
+
+.page-footer-nav-icon img {
+    width:100%;
+    text-align:center;
+    opacity:0.7;
+}
+
+.page-footer-nav-text {
+    display:block;
+    width:100%;
+    height:22px;
+    line-height:22px;
+    text-align:center;
+    color:#333;
+    font-size:12px;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
+.dog1 {
+    background-image:url(../img/dog1.png);
+}
+
+
+#content {
+    background-color:#fff;
+    overflow:hidden;
+}
+
+.content-header {
+    top:0;
+    left:0;
+    right:0;
+    height:44px;
+    position:fixed;
+    background-color:#EF0A62;
+}
+
+.content-header-hamburger {
+    position:absolute;
+    top:0;
+    left:8px;
+    width:43px;
+    height:43px;
+    background-image:url(../img/hamburger.png);
+}
+
+.content-header-title {
+    line-height:43px;
+    color:#fff;
+    font-size:20px;
+    text-align:center;
+}
+
+.content-body {
+    top:44px;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:auto;
+    position:absolute;
+    padding-top:20px;
+}
+
+.content-body-wrapper {
+    padding:0 20px 20px;
+}
+
+.content-body-img {
+    width:100%;
+}
+
+.content-body-img img {
+    width:100%;
+    text-align:center;
+}
+
+.content-body-title {
+    font-size:20px;
+    margin-top:30px;
+}
+
+.content-body-desc {
+    margin-top:8px;
+    margin-bottom:16px;
+    color:#555;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.benefits-item {
+    margin-bottom:20px;
+    background-image:url(../img/check.png);
+    background-repeat:no-repeat;
+    background-position:0 3px;
+    line-height:1.5;
+    min-height:45px;
+}
+
+.benefits-item-text {
+    padding-left:55px;
+}
+
+.primary-menu {
+    margin-bottom:5px;
+    padding:10px 20px 10px;
+    display:block;
+    text-decoration:none;
+    outline:none;
+}
+
+.primary-menu:active {
+    background-color:#efefef;
+}
+
+.primary-menu-title {
+    font-size:24px;
+    color:#EA1462;
+    display:block;
+    margin-bottom:3px;
+}
+
+.primary-menu-desc {
+    font-size:14px;
+    color:#5A6670;
+    display:block;
+    margin-bottom:3px;
+}
+
+.snap-drawer-link {
+    padding-top:15px;
+    padding-bottom:15px;  
+    padding-left:10px;
+    border-bottom:1px solid #4B4B4B;
+    color:#fff;
+    display:block;
+    text-decoration:none;
+    outline:0;
+    font-size:14px;
+}
+
+.snap-drawer-sub-link {
+    padding-left:25px;
+    color:#aaa;
+}
+
+.snap-drawer-link:active {
+    background-color:#323232;
+}
+
+.video-item {
+    position:relative;
+    margin-bottom:10px;
+}
+
+.video-item-thumbnail {
+    width:120px;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.video-item-thumbnail img {
+    width:100%;
+}
+
+.video-item-desc {
+    padding-left:135px;
+}
+
+.video-item-title {
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.video-item-duration {
+    color:#888;
+    font-size:13px;
+}
+
+
+.video-title {
+    font-size:18px;
+    font-weight:bold;
+    text-decoration:none;
+    outline:0;
+    color:#222;
+    display:block;
+    margin-bottom:10px;
+}
+
+.video-container {
+    width:100%;
+    position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+	margin-bottom:30px;
+}
+
+.video-container iframe {
+    position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+
+
+/* JQuery Mobile Overrides */
+.ui-loader {
+    display:none;
+}

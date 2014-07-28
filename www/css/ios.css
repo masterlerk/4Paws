@@ -1,0 +1,38 @@
+.content-header {
+    top:0;
+    left:0;
+    right:0;
+    height:59px;
+    position:fixed;
+    background-color:#EF0A62;
+}
+
+.content-header-hamburger {
+    position:absolute;
+    top:15px;
+    left:8px;
+    width:43px;
+    height:43px;
+    background-image:url(../img/hamburger.png);
+}
+
+.content-header-title {
+    line-height:72px;
+    color:#fff;
+    font-size:20px;
+    text-align:center;
+}
+
+.content-body {
+    top:59px;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:auto;
+    position:absolute;
+    padding-top:20px;
+}
+
+.snap-drawer {
+    padding-top:20px;
+}
